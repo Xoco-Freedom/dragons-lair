@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const massive = require("massive");
+const authCtrl = require("./controllers/authController");
 require("dotenv").config();
 
 const app = express();
@@ -25,5 +26,7 @@ massive({
   app.set("db", db);
   console.log("db connected");
 });
+
+app.post("/auth/register", authCtrl.register);
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
